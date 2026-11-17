@@ -1,0 +1,142 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    overflow: hidden;
+    background: #02040b;
+    font-family: Arial, sans-serif;
+}
+
+canvas {
+    display: block;
+    width: 100vw;
+    height: 100vh;
+}
+
+#controls {
+    position: fixed;
+    bottom: 65px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+}
+
+#bombButton {
+    padding: 18px 55px;
+    background: linear-gradient(180deg, #ff3434, #a50000);
+    color: white;
+    border: 2px solid #ff7777;
+    border-radius: 6px;
+
+    font-size: 17px;
+    font-weight: 800;
+    letter-spacing: 3px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 0 15px rgba(255, 0, 0, 0.5),
+        0 0 40px rgba(255, 0, 0, 0.2);
+
+    transition: all 0.25s ease;
+}
+
+#bombButton:hover {
+    background: #ff1717;
+    box-shadow: 0 0 35px rgba(255, 0, 0, 0.8);
+    transform: scale(1.06);
+}
+
+#bombButton:active {
+    transform: scale(0.96);
+}
+
+#countdown {
+    position: fixed;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: clamp(100px, 20vw, 220px);
+    font-weight: 900;
+    z-index: 20;
+    text-shadow: 0 0 40px white;
+}
+
+#flash {
+    position: fixed;
+    inset: 0;
+    background: white;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 30;
+}
+
+#explosionScene {
+    position: fixed;
+    inset: 0;
+    display: none;
+    overflow: hidden;
+    background-image: url("./assets/explosion.jpg");
+    background-size: cover;
+    background-position: center;
+    z-index: 20;
+}
+
+.smoke {
+    position: absolute;
+    width: 65vw;
+    height: 65vw;
+    border-radius: 50%;
+    background:
+        radial-gradient(ellipse,
+            rgba(35, 25, 24, 0.65) 0%,
+            rgba(45, 30, 27, 0.4) 35%,
+            rgba(40, 30, 30, 0) 72%);
+    filter: blur(35px);
+    opacity: 0;
+    animation: smokeRise 12s infinite ease-in-out;
+}
+
+.smoke-one {
+    left: 10%;
+    top: 25%;
+    animation-delay: 0s;
+}
+
+.smoke-two {
+    left: 35%;
+    top: 35%;
+    animation-delay: 3s;
+}
+
+.smoke-three {
+    left: 55%;
+    top: 20%;
+    animation-delay: 6s;
+}
+
+@keyframes smokeRise {
+    0% {
+        transform: translate(0, 80px) scale(0.7);
+        opacity: 0;
+    }
+
+    25% {
+        opacity: 0.65;
+    }
+
+    70% {
+        opacity: 0.4;
+    }
+
+    100% {
+        transform: translate(-70px, -180px) scale(1.5);
+        opacity: 0;
+    }
+}
